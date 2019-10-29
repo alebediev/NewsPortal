@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="top-posts">
+        {% set main_article = articles.shift %}
+        <article class="main-post top-post">
+            <a href="#" class="category-link">{{ main_article.category }}</a>
+            <a href="#">
+                <img src="{{ main_article.image }}" alt="" class="img-fluid">
+            </a>
+            <a href="#" class="post-link">
+                <h1>{{ main_article.title }}</h1>
+            </a>
+            <time>{{ main_article.publishedAt | date('d-m-Y H:i:s') }}</time>
+            <p>{{ main_article.description }}</p>
+            <div class="clearfix"></div>
+        </article>
+        <div class="row posts">
+            <div class="col"></div>
+            {% for article in articles.slice(3) %}
+                <div class="col-3">
+                    <article class="post top-post">
+                        <a href="#" class="category-link">{{ article.category }}</a>
+                        <a href="#">
+                            <img src="{{ article.image }}" alt="" class="img-fluid">
+                        </a>
+                        <a href="#" class="post-link">
+                            <h3>{{ article.title }}</h3>
+                        </a>
+                        <time>{{ article.publishedAt | date('d-m-Y H:i:s') }}</time>
+                        <p>{{ article.description }}</p>
+                    </article>
+                </div>
+            {% endfor %}
+            <div class="col"></div>
+        </div>
+    </section>
+    <section class="regular-posts">
+        {% for article in articles %}
+            <article class="post">
+                <a href="#" class="category-link">{{ article.category }}</a>
+                <a href="#"><h4>{{ article.title }}</h4></a>
+                <time>{{ article.publishedAt | date('d-m-Y H:i:s') }}</time>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

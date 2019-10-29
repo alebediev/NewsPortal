@@ -2,12 +2,17 @@
 
 namespace App\Controller;
 
+use App\Service\Article\ArticlePresentationInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-final class DefaultController
+final class DefaultController extends AbstractController
 {
-    public function index(): Response
+    public function index(ArticlePresentationInterface $articlePresentation): Response
     {
-        return new Response('<h1>Welcome to News Portal!</h1>');
+        $articles = $articlePresentation->getLatest();
+        return $this->render('default/index.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 }
