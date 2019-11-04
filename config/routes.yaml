@@ -8,3 +8,7 @@ article:
     controller: App\Controller\DefaultController::article
     requirements:
         id: '\d+'
+
+category:
+    path: /{slug}
+    controller: App\Controller\DefaultController::category
