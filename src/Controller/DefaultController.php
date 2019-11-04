@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Repository\Category\CategoryRepository;
 use App\Service\Article\ArticlePageInterface;
 use App\Service\Article\ArticlePresentationInterface;
 use App\Service\Category\CategoryPresentationInterface;
@@ -40,7 +42,7 @@ final class DefaultController extends AbstractController
     /**
      * Article view action.
      *
-     * @param int                  $id
+     * @param int $id
      * @param ArticlePageInterface $articlePage
      *
      * @return Response
@@ -57,7 +59,7 @@ final class DefaultController extends AbstractController
     /**
      * Category view action.
      *
-     * @param string                        $slug
+     * @param string $slug
      * @param CategoryPresentationInterface $categoryPresentation
      *
      * @return Response
@@ -65,10 +67,11 @@ final class DefaultController extends AbstractController
     public function category(string $slug, CategoryPresentationInterface $categoryPresentation): Response
     {
         $articlesInCategory = $categoryPresentation->getArticlesInCategory($slug);
-
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy(['slug' => $slug]);
+        
         return $this->render('default/category.html.twig', [
             'articles' => $articlesInCategory,
-            'category' => $slug,
+            'category' => $category->getTitle(),
         ]);
     }
 }
