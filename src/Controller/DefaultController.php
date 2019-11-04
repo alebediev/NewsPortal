@@ -15,6 +15,7 @@ namespace App\Controller;
 
 use App\Service\Article\ArticlePageInterface;
 use App\Service\Article\ArticlePresentationInterface;
+use App\Service\Category\CategoryPresentationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -50,6 +51,24 @@ final class DefaultController extends AbstractController
 
         return $this->render('default/article.html.twig', [
             'article' => $article,
+        ]);
+    }
+
+    /**
+     * Category view action
+     *
+     * @param string $slug
+     * @param CategoryPresentationInterface $categoryPresentation
+     *
+     * @return Response
+     */
+    public function category(string $slug, CategoryPresentationInterface $categoryPresentation): Response
+    {
+        $articlesInCategory = $categoryPresentation->getArticlesInCategory($slug);
+
+        return $this->render('default/category.html.twig',[
+            'articles' => $articlesInCategory,
+            'category' => $slug
         ]);
     }
 }

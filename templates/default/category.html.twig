@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+       <div class="col-12">
+           <h1>Category: {{ category }}</h1>
+       </div>
+        {% for article in articles %}
+            <div class="row my-3 ml-3">
+                <div class="col-4"><img src="{{ article.image }}" class="img-fluid" style=""></div>
+                <article class="post col-8">
+                    <a href="{{ path('article', {id: article.id}) }}"><h4>{{ article.title }}</h4></a>
+                    <time>{{ article.publishedAt | date('d-m-Y H:i:s') }}</time>
+                    <p>{{ article.description }}</p>
+                </article>
+
+            </div>
+        {% endfor %}
+{% endblock %}
