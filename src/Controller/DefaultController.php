@@ -55,9 +55,9 @@ final class DefaultController extends AbstractController
     }
 
     /**
-     * Category view action
+     * Category view action.
      *
-     * @param string $slug
+     * @param string                        $slug
      * @param CategoryPresentationInterface $categoryPresentation
      *
      * @return Response
@@ -66,9 +66,9 @@ final class DefaultController extends AbstractController
     {
         $articlesInCategory = $categoryPresentation->getArticlesInCategory($slug);
 
-        return $this->render('default/category.html.twig',[
+        return $this->render('default/category.html.twig', [
             'articles' => $articlesInCategory,
-            'category' => $slug
+            'category' => $slug,
         ]);
     }
 }

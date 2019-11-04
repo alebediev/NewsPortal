@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the "News portal" project.
+ *
+ * (c) Andrii Lebediev <wasaby.stnc@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\Article;
@@ -8,9 +19,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 final class ArticleFixture extends AbstractFixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 15; ++$i) {
             $title = \ucfirst($this->faker->words($this->faker->numberBetween(3, 5), true));
             $article = new Article($title);
 
@@ -25,7 +36,7 @@ final class ArticleFixture extends AbstractFixture implements DependentFixtureIn
             $body = '';
             $sentences = $this->faker->numberBetween(8, 20);
 
-            for ($j = 0; $j < $sentences; $j++) {
+            for ($j = 0; $j < $sentences; ++$j) {
                 $body .= '<p>'
                     . $this->faker->words($this->faker->numberBetween(4, 8), true)
                     . '</p>'
@@ -45,7 +56,7 @@ final class ArticleFixture extends AbstractFixture implements DependentFixtureIn
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDependencies()
     {
