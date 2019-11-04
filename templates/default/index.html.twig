@@ -8,7 +8,7 @@
     <section class="top-posts">
         {% set main_article = articles.shift %}
         <article class="main-post top-post">
-            <a href="#" class="category-link">{{ main_article.category }}</a>
+            <a href="#" class="category-link">{{ main_article.category.title }}</a>
             <a href="{{ path('article', {id: main_article.id}) }}">
                 <img src="{{ main_article.image }}" alt="" class="img-fluid">
             </a>
@@ -24,7 +24,7 @@
             {% for article in articles.slice(3) %}
                 <div class="col-3">
                     <article class="post top-post">
-                        <a href="#" class="category-link">{{ article.category }}</a>
+                        <a href="#" class="category-link">{{ article.category.title }}</a>
                         <a href="{{ path('article', {id: article.id}) }}">
                             <img src="{{ article.image }}" alt="" class="img-fluid">
                         </a>
@@ -42,7 +42,7 @@
     <section class="regular-posts">
         {% for article in articles %}
             <article class="post">
-                <a href="#" class="category-link">{{ article.category }}</a>
+                <a href="#" class="category-link">{{ article.category.title }}</a>
                 <a href="{{ path('article', {id: article.id}) }}"><h4>{{ article.title }}</h4></a>
                 <time>{{ article.publishedAt | date('d-m-Y H:i:s') }}</time>
             </article>
