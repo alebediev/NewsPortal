@@ -61,17 +61,18 @@ final class DefaultController extends AbstractController
      *
      * @param string $slug
      * @param CategoryPresentationInterface $categoryPresentation
+     * @param CategoryRepository $categoryRepository
      *
      * @return Response
      */
-    public function category(string $slug, CategoryPresentationInterface $categoryPresentation): Response
-    {
-        $articlesInCategory = $categoryPresentation->getArticlesInCategory($slug);
-        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy(['slug' => $slug]);
-        
+    public function category(
+        string $slug,
+        CategoryPresentationInterface $categoryPresentation,
+        CategoryRepository $categoryRepository
+    ): Response {
         return $this->render('default/category.html.twig', [
-            'articles' => $articlesInCategory,
-            'category' => $category->getTitle(),
+            'articles' => $categoryPresentation->getArticlesInCategory($slug),
+            'category' => $categoryRepository->findOneBy(['slug' => $slug])->getTitle(),
         ]);
     }
 }
