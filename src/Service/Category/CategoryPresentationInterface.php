@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Service\Article;
+namespace App\Service\Category;
 
 use App\Collection\ArticleCollection;
 
-interface ArticlePresentationInterface
+interface CategoryPresentationInterface
 {
-    public function getLatest(): ArticleCollection;
+    public function getArticlesInCategory(string $slug): ArticleCollection;
 }

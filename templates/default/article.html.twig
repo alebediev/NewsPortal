@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+        <div class="row mx-auto">
+            <h1 class="col-12 mx-auto">{{ article.title }}</h1>
+            <div class="col-12">
+                <div class="col-12 float-right">Category: {{ article.category }}</div>
+                <div class="col-12 mb-3">Published at: {{ article.publishedAt | date('d-m-Y H:i:s') }}</div>
+            </div>
+        </div>
+        <div class="row mx-5">
+            <div class="col-12">
+            <img src="{{ article.image }}" class="img-fluid float-left mr-3 mb-2">
+            <p>{{ article.body }}</p>
+            </div>
+        </div>
+{% endblock %}

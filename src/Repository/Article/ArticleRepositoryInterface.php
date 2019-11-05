@@ -11,11 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Service\Article;
+namespace App\Repository\Article;
 
-use App\Collection\ArticleCollection;
-
-interface ArticlePresentationInterface
+interface ArticleRepositoryInterface
 {
-    public function getLatest(): ArticleCollection;
+    /**
+     * @return \App\Entity\Article[]
+     */
+    public function findLatest(): iterable;
 }

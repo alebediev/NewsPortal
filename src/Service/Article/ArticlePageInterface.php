@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace App\Service\Article;
 
-use App\Collection\ArticleCollection;
+use App\Model\Article;
 
-interface ArticlePresentationInterface
+interface ArticlePageInterface
 {
-    public function getLatest(): ArticleCollection;
+    public function getArticle(int $id): Article;
 }

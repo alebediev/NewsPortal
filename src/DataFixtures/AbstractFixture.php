@@ -11,11 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Service\Article;
+namespace App\DataFixtures;
 
-use App\Collection\ArticleCollection;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Faker\Factory;
 
-interface ArticlePresentationInterface
+abstract class AbstractFixture extends Fixture
 {
-    public function getLatest(): ArticleCollection;
+    protected $faker;
+
+    public function __construct()
+    {
+        $this->faker = Factory::create();
+    }
 }

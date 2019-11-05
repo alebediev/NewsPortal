@@ -11,11 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Service\Article;
+namespace App\Repository\Category;
 
-use App\Collection\ArticleCollection;
-
-interface ArticlePresentationInterface
+interface ArticlesInCategoryInterface
 {
-    public function getLatest(): ArticleCollection;
+    /**
+     * @param string $slug
+     *
+     * @return \App\Entity\Article[]
+     */
+    public function findAllArticlesInCategory(string $slug): iterable;
 }
